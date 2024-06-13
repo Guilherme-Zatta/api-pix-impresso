@@ -68,8 +68,7 @@ public class JdbcCaixaRepository implements CaixaRepository {
     params.put("id", caixa.getId());
 
     // Executar a instrução SQL para criar um novo registro
-    namedParameterJdbcTemplate.update(sql,
-        new MapSqlParameterSource(params));
+    namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params));
 
     return 1;
   }

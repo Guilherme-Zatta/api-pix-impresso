@@ -8,7 +8,7 @@ import br.senac.pr.api_pix_impresso.models.Caixa;
 import br.senac.pr.api_pix_impresso.repositories.JdbcCaixaRepository;
 
 @Service
-public class CaixaService {
+public class CaixaService implements BaseService<Caixa, Long> {
   private JdbcCaixaRepository caixaRepository;
 
   public CaixaService(JdbcCaixaRepository caixaRepository) {
@@ -48,7 +48,10 @@ public class CaixaService {
   }
 
   public Caixa findById(Long id) {
-    return caixaRepository.findById(id);
+    return caixaRepository.findById(id).orElse(null);
   }
 
+  public void deleteById(Long id) {
+    caixaRepository.deleteById(id);
+  }
 }

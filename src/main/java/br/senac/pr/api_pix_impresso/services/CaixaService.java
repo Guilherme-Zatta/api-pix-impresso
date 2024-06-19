@@ -27,9 +27,9 @@ public class CaixaService implements BaseService<Caixa, Long> {
     return caixaRepository.save(caixa);
   }
 
-  public List<Caixa> findAll() {
+ public List<Caixa> findAll() {
     return caixaRepository.findAll();
-  }
+  } 
 
   public void updateSaldoCaixa(Caixa caixa) {
     caixaRepository.update(caixa);

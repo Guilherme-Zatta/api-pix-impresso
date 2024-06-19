@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
-import br.senac.pr.api_pix_impresso.models.Caixa;
 import br.senac.pr.api_pix_impresso.models.Conta;
 
 @Repository
@@ -79,8 +79,28 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
 
   @Override
   public Optional<Conta> findById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    String sql = "SELECT ID, AGENCIA, NUMERO_CONTA, DIGITO_VERIFICADOR, NOME, CPF, TIPO_CONTA, NUMERO_CARTAO, SENHA, SALDO FROM CONTAS WHERE ID = ?";
+
+    Object[] args = new Object[] { id };
+    int[] argTypes = { java.sql.Types.INTEGER };
+    Conta conta = null;
+    try {
+      conta = jdbcTemplate.queryForObject(sql, args, argTypes, (rs, rowNum) -> {
+        return new Conta(rs.getLong("ID"),
+        rs.getLong("AGENCIA"),
+        rs.getLong("NUMERO_CONTA"),
+        rs.getLong("DIGITO_VERIFICADOR"),
+        rs.getString("NOME"),
+        rs.getString("CPF"),
+        rs.getLong("TIPO_CONTA"),
+        rs.getString("NUMERO_CARTAO"),
+        rs.getString("SENHA"),
+        rs.getDouble("SALDO"));
+  });
+      return Optional.of(conta);
+    } catch (EmptyResultDataAccessException e) {
+      return Optional.ofNullable(conta);
+    }
   }
 
   @Override

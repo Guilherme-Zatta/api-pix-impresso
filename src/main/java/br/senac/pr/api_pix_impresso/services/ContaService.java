@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.senac.pr.api_pix_impresso.models.Caixa;
 import br.senac.pr.api_pix_impresso.models.Conta;
 import br.senac.pr.api_pix_impresso.repositories.JdbcContaRepository;
 
 // TODO - implementar um CRUD completo baseado nas chamadas do controller
 @Service
 public class ContaService implements BaseService<Conta, Long> {
-
   private JdbcContaRepository contaRepository;
 
   public ContaService(JdbcContaRepository contaRepository) {
@@ -27,11 +27,10 @@ public class ContaService implements BaseService<Conta, Long> {
     return contaRepository.findAll();
   }
 
-  @Override
   public Conta findById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    return contaRepository.findById(id).orElse(null);
   }
+
 
   @Override
   public int update(Conta object) {

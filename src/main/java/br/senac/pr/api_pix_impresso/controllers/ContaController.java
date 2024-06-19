@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.senac.pr.api_pix_impresso.dtos.CreateContaDto;
+import br.senac.pr.api_pix_impresso.dtos.UpdateSaldoCaixaDto;
+import br.senac.pr.api_pix_impresso.dtos.UpdateSaldoContaDto;
 import br.senac.pr.api_pix_impresso.models.Caixa;
 import br.senac.pr.api_pix_impresso.models.Conta;
 import br.senac.pr.api_pix_impresso.services.ContaService;
@@ -59,5 +62,19 @@ public class ContaController {
   }
   // PUT - Atualiza uma conta
   // PATCH - Atualiza parcialmente uma conta
+    @PatchMapping("/{id}")
+  public ResponseEntity<String> updateSaldoConta(@RequestBody UpdateSaldoContaDto dto,
+      @PathVariable Long id) {
+    // Atualizar o registro no banco
+    // retorna o objeto caixa
+    Conta conta = contaService.findById(id);
+    if (conta == null) {
+      // atualiza o registro
+      return ResponseEntity.notFound().build();
+    }
+    conta.setSaldo(dto.getSaldo());
+    contaService.updateSaldoConta(conta);
+    return ResponseEntity.ok().build();
+  }
   // DELETE - Deleta uma conta
 }

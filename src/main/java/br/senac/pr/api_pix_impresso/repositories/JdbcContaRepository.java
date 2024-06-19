@@ -72,10 +72,28 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
   }
 
   @Override
-  public int update(Conta object) {
+  public int update(Conta conta) {
     // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
-  }
+    String sql = """
+          UPDATE CONTAS SET SALDO = :saldo
+          WHERE ID = :id
+        """;
+
+    Map<String, Object> params = new HashMap<>();
+    params.put("agencia", conta.getAgencia());
+    params.put("numeroConta", conta.getNumeroConta());
+    params.put("digitoVerificador", conta.getDigitoVerificador());
+    params.put("nome", conta.getNome());
+    params.put("cpf", conta.getCpf());
+    params.put("tipoConta", conta.getTipoConta());
+    params.put("numeroCartao", conta.getNumeroCartao());
+    params.put("senha", conta.getSenha());
+    params.put("saldo", conta.getSaldo());
+
+    // Executar a instrução SQL para criar um novo registro
+    namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params));
+
+    return 1;}
 
   @Override
   public Optional<Conta> findById(Long id) {

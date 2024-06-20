@@ -57,7 +57,7 @@ public class JdbcCaixaRepository implements BaseJdbcRepository<Caixa, Long> {
   }
 
   @Override
-  public int update(Caixa caixa) {
+  public void update(Caixa caixa) {
     // SQL placeholders can use named parameters instead of "?".
     String sql = """
           UPDATE CAIXAS SET LOCALIZACAO = :localizacao, SALDO = :saldo
@@ -71,8 +71,6 @@ public class JdbcCaixaRepository implements BaseJdbcRepository<Caixa, Long> {
 
     // Executar a instrução SQL para criar um novo registro
     namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params));
-
-    return 1;
   }
 
   @Override

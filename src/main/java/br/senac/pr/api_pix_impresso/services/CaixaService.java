@@ -27,15 +27,15 @@ public class CaixaService implements BaseService<Caixa, Long> {
     return caixaRepository.save(caixa);
   }
 
- public List<Caixa> findAll() {
+  public List<Caixa> findAll() {
     return caixaRepository.findAll();
-  } 
+  }
 
   public void updateSaldoCaixa(Caixa caixa) {
     caixaRepository.update(caixa);
   }
 
-  public int update(Caixa caixa) {
+  public void update(Caixa caixa) {
     if (caixa == null) {
       throw new Error("Dados do caixa inválidos");
     }
@@ -43,8 +43,6 @@ public class CaixaService implements BaseService<Caixa, Long> {
     if (caixa.getId() <= 0 || caixa.getId() == null) {
       throw new Error("ID do caixa inválido");
     }
-    // TODO - Finalizar o método update no repository
-    return caixaRepository.update(caixa);
   }
 
   public Caixa findById(Long id) {

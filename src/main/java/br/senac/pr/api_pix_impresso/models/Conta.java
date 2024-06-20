@@ -1,5 +1,8 @@
 package br.senac.pr.api_pix_impresso.models;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Conta {
   // Criar os atributos para a tabela Conta
   private Long id;
@@ -109,4 +112,18 @@ public class Conta {
     this.saldo = saldo;
   }
 
+  public Map<String, Object> toMap() {
+    Map<String, Object> map = new HashMap<>();
+    map.put("id", id);
+    map.put("agencia", agencia);
+    map.put("numero_conta", numeroConta);
+    map.put("digito_verificador", digitoVerificador);
+    map.put("nome", nome);
+    map.put("cpf", cpf);
+    map.put("tipo_conta", tipoConta);
+    map.put("numero_cartao", numeroCartao);
+    map.put("senha", senha);
+    map.put("saldo", saldo);
+    return map;
+  }
 }

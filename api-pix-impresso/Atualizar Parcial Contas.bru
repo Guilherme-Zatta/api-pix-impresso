@@ -1,18 +1,19 @@
 meta {
   name: Atualizar Parcial Contas
   type: http
-  seq: 11
+  seq: 10
 }
 
 patch {
-  url: http://localhost:8080/caixas
+  url: http://localhost:8080/contas/1/updateCadastro
   body: json
   auth: none
 }
 
 body:json {
   {
-    "localizacao": "Gralha Azul",
-    "saldo": 250
+    "nome": "Guilherme Zatta",
+    "cpf": "11393323118",
+    "tipoConta": 1
   }
 }

@@ -10,7 +10,7 @@ public interface BaseService<T, ID> {
 
   public T findById(ID id);
 
-  public int update(T object);
+  public void update(T object);
 
   public void deleteById(ID id);
 

@@ -2,48 +2,20 @@ package br.senac.pr.api_pix_impresso.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import br.senac.pr.api_pix_impresso.dtos.CreateContaDto;
+import br.senac.pr.api_pix_impresso.dtos.DetailContaDto;
+import br.senac.pr.api_pix_impresso.dtos.UpdateContaDto;
 
-import br.senac.pr.api_pix_impresso.models.Conta;
-import br.senac.pr.api_pix_impresso.repositories.JdbcContaRepository;
+public interface ContaService {
 
-// TODO - implementar um CRUD completo baseado nas chamadas do controller
-@Service
-public class ContaService implements BaseService<Conta, Long> {
-  private JdbcContaRepository contaRepository;
+  public DetailContaDto save(CreateContaDto dto);
 
-  public ContaService(JdbcContaRepository contaRepository) {
-    this.contaRepository = contaRepository;
-  }
+  public List<DetailContaDto> findAll();
 
-  @Override
-  public int save(Conta object) {
-    return contaRepository.save(object);
-  }
+  public DetailContaDto findById(Long id);
 
-  @Override
-  public List<Conta> findAll() {
-    return contaRepository.findAll();
-  }
+  public DetailContaDto update(UpdateContaDto conta);
 
-  public Conta findById(Long id) {
-    return contaRepository.findById(id).orElse(null);
-  }
-
-  public void updateSaldoConta(Conta conta) {
-    contaRepository.update(conta);
-  }
-
-  @Override
-  public int update(Conta object) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'update'");
-  }
-
-  @Override
-  public void deleteById(Long id) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
-  }
+  public void deleteById(Long id);
 
 }

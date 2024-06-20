@@ -6,7 +6,7 @@ import java.util.Optional;
 public interface BaseJdbcRepository<T, ID> {
   int save(T object);
 
-  int update(T object);
+  void update(T object);
 
   Optional<T> findById(ID id);
 

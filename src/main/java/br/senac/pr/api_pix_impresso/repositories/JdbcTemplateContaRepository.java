@@ -1,39 +1,39 @@
 package br.senac.pr.api_pix_impresso.repositories;
 // TODO - Implementar a interface BaseJdbcRepository
- 
+
 import java.util.HashMap;
- 
+
 // Implementar todos os métodos para serem usados pelo service
- 
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
- 
+
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
- 
+
 import br.senac.pr.api_pix_impresso.models.Conta;
- 
+
 @Repository
-public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
- 
+public class JdbcTemplateContaRepository implements BaseJdbcRepository<Conta, Long> {
+
   private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
   private JdbcTemplate jdbcTemplate;
- 
-  public JdbcContaRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
+
+  public JdbcTemplateContaRepository(NamedParameterJdbcTemplate namedParameterJdbcTemplate,
       JdbcTemplate jdbcTemplate) {
     this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     this.jdbcTemplate = jdbcTemplate;
   }
- 
+
   @Override
   public int save(Conta object) {
     GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
- 
+
     // SQL placeholders can use named parameters instead of "?".
     String sql = """
         INSERT INTO public.contas
@@ -44,7 +44,7 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
             :nome, :cpf, :tipo_conta,
             :numero_cartao, :senha, :saldo)
         """;
- 
+
     Map<String, Object> params = new HashMap<>();
     params.put("agencia", object.getAgencia());
     params.put("numero_conta", object.getNumeroConta());
@@ -55,22 +55,22 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
     params.put("numero_cartao", object.getNumeroCartao());
     params.put("senha", object.getSenha());
     params.put("saldo", object.getSaldo());
- 
+
     // Executar a instrução SQL para criar um novo registro
     namedParameterJdbcTemplate.update(sql,
         new MapSqlParameterSource(params),
         generatedKeyHolder);
- 
+
     var returnedKeys = generatedKeyHolder.getKeys();
     if (returnedKeys == null) {
       throw new Error("Erro ao salvar a conta");
     }
     // Obtem do registro inserido, o ID gerado pelo banco
     Integer id = (Integer) returnedKeys.get("ID");
- 
+
     return id;
   }
- 
+
   @Override
   public void update(Conta object) {
     String sql = """
@@ -83,7 +83,7 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
              senha = :senha, saldo = :saldo
         where id = :id
          """;
- 
+
     Map<String, Object> params = new HashMap<>();
     params.put("id", object.getId());
     params.put("agencia", object.getAgencia());
@@ -95,11 +95,11 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
     params.put("numero_cartao", object.getNumeroCartao());
     params.put("senha", object.getSenha());
     params.put("saldo", object.getSaldo());
- 
+
     // Executar a instrução SQL para criar um novo registro
     namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params));
   }
- 
+
   @Override
   public Optional<Conta> findById(Long id) {
     String sql = """
@@ -107,7 +107,7 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
                 nome, cpf, tipo_conta,
                 numero_cartao, senha, saldo FROM contas WHERE ID = ?
         """;
- 
+
     Object[] args = new Object[] { id };
     int[] argTypes = { java.sql.Types.INTEGER };
     Conta conta = null;
@@ -129,22 +129,13 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
       return Optional.ofNullable(conta);
     }
   }
- 
+
   @Override
   public int deleteById(Long id) {
-    String sql = """
-          DELETE FROM CONTAS WHERE ID = :id
-        """;
-
-    Map<String, Object> params = new HashMap<>();
-    params.put("id", id);
-
-    // Executar a instrução SQL para criar um novo registro
-    namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params));
-
-    return 1;
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'deleteById'");
   }
- 
+
   @Override
   public List<Conta> findAll() {
     String selectQuery = """
@@ -169,11 +160,11 @@ public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {
                   rs.getDouble("SALDO"));
             });
   }
- 
+
   @Override
   public int deleteAll() {
     // TODO Auto-generated method stub
     throw new UnsupportedOperationException("Unimplemented method 'deleteAll'");
   }
- 
+
 }

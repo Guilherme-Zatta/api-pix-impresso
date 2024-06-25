@@ -16,14 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import br.senac.pr.api_pix_impresso.caixa.dtos.CreateCaixaDto;
 import br.senac.pr.api_pix_impresso.caixa.dtos.UpdateCaixaDto;
 import br.senac.pr.api_pix_impresso.caixa.dtos.UpdateSaldoCaixaDto;
+import br.senac.pr.api_pix_impresso.caixa.impl.CaixaServiceImpl;
 import br.senac.pr.api_pix_impresso.shared.models.Caixa;
 
 @RestController
 @RequestMapping("/caixas")
 public class CaixaController {
-  private CaixaService caixaService;
+  private CaixaServiceImpl caixaService;
 
-  public CaixaController(CaixaService caixaService) {
+  public CaixaController(CaixaServiceImpl caixaService) {
     this.caixaService = caixaService;
   }
 

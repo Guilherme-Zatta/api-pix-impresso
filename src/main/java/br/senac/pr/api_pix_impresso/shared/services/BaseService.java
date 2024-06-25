@@ -1,4 +1,4 @@
-package br.senac.pr.api_pix_impresso.services;
+package br.senac.pr.api_pix_impresso.shared.services;
 
 import java.util.List;
 

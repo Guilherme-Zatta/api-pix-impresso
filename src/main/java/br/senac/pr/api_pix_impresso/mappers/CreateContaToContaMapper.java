@@ -12,10 +12,10 @@ public class CreateContaToContaMapper implements Function<CreateContaDto, Conta>
 
   @Override
   public Conta apply(CreateContaDto dto) {
-    return new Conta(null, dto.getAgencia(), dto.getNumeroConta(),
-        dto.getDigitoVerificador(), dto.getNome(),
-        dto.getCpf(), dto.getTipoConta(), dto.getNumeroCartao(),
-        dto.getSenha(), dto.getSaldo());
+    return new Conta(null, dto.agencia(), dto.numeroConta(),
+        dto.digitoVerificador(), dto.nome(),
+        dto.cpf(), dto.tipoConta(), null,
+        null, 0.0);
   }
 
 }

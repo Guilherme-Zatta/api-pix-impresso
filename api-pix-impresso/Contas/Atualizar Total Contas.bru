@@ -1,11 +1,11 @@
 meta {
-  name: Criar Contas
+  name: Atualizar Total Contas
   type: http
-  seq: 9
+  seq: 5
 }
 
-post {
-  url: http://localhost:8080/contas
+put {
+  url: http://localhost:8080/contas/1
   body: json
   auth: none
 }
@@ -15,11 +15,11 @@ body:json {
     "agencia": 123,
     "numeroConta": 1235,
     "digitoVerificador": 1,
-    "nome": "Gabriel Zatta",
+    "nome": "Guilherme Zatta",
     "cpf": "11393323118",
     "tipoConta": 1,
     "numeroCartao": "1234123412344321",
     "senha": "123",
-    "saldo": 5
+    "saldo": 8000
   }
 }

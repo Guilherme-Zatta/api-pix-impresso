@@ -1,4 +1,4 @@
-package br.senac.pr.api_pix_impresso.models;
+package br.senac.pr.api_pix_impresso.shared.models;
 
 public class Caixa {
   private Long id;

@@ -2,7 +2,7 @@ package br.senac.pr.api_pix_impresso.transacao;
 
 import java.util.List;
 
-import br.senac.pr.api_pix_impresso.models.Transacao;
+import br.senac.pr.api_pix_impresso.shared.models.Transacao;
 import br.senac.pr.api_pix_impresso.transacao.dtos.CreateTransacaoDto;
 
 public interface TransacaoService {

@@ -1,10 +1,10 @@
-package br.senac.pr.api_pix_impresso.services;
+package br.senac.pr.api_pix_impresso.conta;
 
 import java.util.List;
 
-import br.senac.pr.api_pix_impresso.dtos.CreateContaDto;
-import br.senac.pr.api_pix_impresso.dtos.DetailContaDto;
-import br.senac.pr.api_pix_impresso.dtos.UpdateContaDto;
+import br.senac.pr.api_pix_impresso.conta.dtos.CreateContaDto;
+import br.senac.pr.api_pix_impresso.conta.dtos.DetailContaDto;
+import br.senac.pr.api_pix_impresso.conta.dtos.UpdateContaDto;
 
 public interface ContaService {
 

@@ -1,20 +1,20 @@
-package br.senac.pr.api_pix_impresso.services.impl;
+package br.senac.pr.api_pix_impresso.conta.impl;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import br.senac.pr.api_pix_impresso.dtos.CreateContaDto;
-import br.senac.pr.api_pix_impresso.dtos.DetailContaDto;
-import br.senac.pr.api_pix_impresso.dtos.UpdateContaCadastroDto;
-import br.senac.pr.api_pix_impresso.dtos.UpdateContaDto;
-import br.senac.pr.api_pix_impresso.dtos.UpdateContaSaldoDto;
-import br.senac.pr.api_pix_impresso.mappers.ContaToDetailContaMapper;
-import br.senac.pr.api_pix_impresso.mappers.CreateContaToContaMapper;
-import br.senac.pr.api_pix_impresso.models.Conta;
-import br.senac.pr.api_pix_impresso.repositories.JdbcContaRepository;
-import br.senac.pr.api_pix_impresso.services.ContaService;
+import br.senac.pr.api_pix_impresso.conta.ContaService;
+import br.senac.pr.api_pix_impresso.conta.JdbcContaRepository;
+import br.senac.pr.api_pix_impresso.conta.dtos.CreateContaDto;
+import br.senac.pr.api_pix_impresso.conta.dtos.DetailContaDto;
+import br.senac.pr.api_pix_impresso.conta.dtos.UpdateContaCadastroDto;
+import br.senac.pr.api_pix_impresso.conta.dtos.UpdateContaDto;
+import br.senac.pr.api_pix_impresso.conta.dtos.UpdateContaSaldoDto;
+import br.senac.pr.api_pix_impresso.conta.mappers.ContaToDetailContaMapper;
+import br.senac.pr.api_pix_impresso.conta.mappers.CreateContaToContaMapper;
+import br.senac.pr.api_pix_impresso.shared.models.Conta;
 
 @Service
 public class ContaServiceImpl implements ContaService {

@@ -1,4 +1,4 @@
-package br.senac.pr.api_pix_impresso.controllers;
+package br.senac.pr.api_pix_impresso.caixa;
 
 import java.util.List;
 
@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.senac.pr.api_pix_impresso.dtos.CreateCaixaDto;
-import br.senac.pr.api_pix_impresso.dtos.UpdateCaixaDto;
-import br.senac.pr.api_pix_impresso.dtos.UpdateSaldoCaixaDto;
-import br.senac.pr.api_pix_impresso.models.Caixa;
-import br.senac.pr.api_pix_impresso.services.CaixaService;
+import br.senac.pr.api_pix_impresso.caixa.dtos.CreateCaixaDto;
+import br.senac.pr.api_pix_impresso.caixa.dtos.UpdateCaixaDto;
+import br.senac.pr.api_pix_impresso.caixa.dtos.UpdateSaldoCaixaDto;
+import br.senac.pr.api_pix_impresso.shared.models.Caixa;
 
 @RestController
 @RequestMapping("/caixas")

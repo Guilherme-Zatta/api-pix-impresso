@@ -1,4 +1,4 @@
-package br.senac.pr.api_pix_impresso.repositories;
+package br.senac.pr.api_pix_impresso.conta;
 // TODO - Implementar a interface BaseJdbcRepository
 
 import java.util.Collections;
@@ -17,8 +17,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
-import br.senac.pr.api_pix_impresso.mappers.ContaRowMapper;
-import br.senac.pr.api_pix_impresso.models.Conta;
+import br.senac.pr.api_pix_impresso.conta.mappers.ContaRowMapper;
+import br.senac.pr.api_pix_impresso.shared.models.Conta;
+import br.senac.pr.api_pix_impresso.shared.repositories.BaseJdbcRepository;
 
 @Repository
 public class JdbcContaRepository implements BaseJdbcRepository<Conta, Long> {

@@ -1,4 +1,4 @@
-package br.senac.pr.api_pix_impresso.mappers;
+package br.senac.pr.api_pix_impresso.conta.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.lang.NonNull;
 
-import br.senac.pr.api_pix_impresso.models.Conta;
+import br.senac.pr.api_pix_impresso.shared.models.Conta;
 
 public class ContaRowMapper implements RowMapper<Conta> {
 

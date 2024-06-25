@@ -1,11 +1,11 @@
-package br.senac.pr.api_pix_impresso.mappers;
+package br.senac.pr.api_pix_impresso.conta.mappers;
 
 import java.util.function.Function;
 
 import org.springframework.stereotype.Service;
 
-import br.senac.pr.api_pix_impresso.dtos.CreateContaDto;
-import br.senac.pr.api_pix_impresso.models.Conta;
+import br.senac.pr.api_pix_impresso.conta.dtos.CreateContaDto;
+import br.senac.pr.api_pix_impresso.shared.models.Conta;
 
 @Service
 public class CreateContaToContaMapper implements Function<CreateContaDto, Conta> {

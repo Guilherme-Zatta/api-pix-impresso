@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.senac.pr.api_pix_impresso.shared.models.Transacao;
 import br.senac.pr.api_pix_impresso.transacao.dtos.CreateTransacaoDto;
+import br.senac.pr.api_pix_impresso.transacao.dtos.UpdateValorDto;
 import br.senac.pr.api_pix_impresso.transacao.impl.TransacaoServiceImpl;
-import br.senac.pr.api_pix_impresso.transacao.impl.UpdateValorDto;
 
 @RestController
 @RequestMapping("/transacoes")

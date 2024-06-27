@@ -5,14 +5,22 @@ meta {
 }
 
 put {
-  url: http://localhost:8080/caixas
+  url: http://localhost:8080/caixas/13
   body: json
   auth: none
 }
 
+headers {
+  : 
+}
+
 body:json {
   {
-    "localizacao": "Gralha Azul",
-    "saldo": 0
+    "localizacao": "Outro Lugar Legal",
+    "saldo": 2000
   }
+}
+
+body:text {
+  teste  
 }

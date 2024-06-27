@@ -9,6 +9,7 @@ import br.senac.pr.api_pix_impresso.shared.models.Transacao;
 import br.senac.pr.api_pix_impresso.transacao.TransacaoRepository;
 import br.senac.pr.api_pix_impresso.transacao.TransacaoService;
 import br.senac.pr.api_pix_impresso.transacao.dtos.CreateTransacaoDto;
+import br.senac.pr.api_pix_impresso.transacao.dtos.UpdateValorDto;
 
 @Service
 public class TransacaoServiceImpl implements TransacaoService {

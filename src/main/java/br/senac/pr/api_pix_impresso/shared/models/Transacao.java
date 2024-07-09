@@ -19,13 +19,20 @@ public class Transacao {
   @Column("tipo_transacao")
   private char tipoTransacao;
   private Double valor;
+  private Double latitude;
+  private Double longitude;
 
-  public Transacao(Long caixaId, Long contaId, char tipoTransacao, Double valor) {
+  public Transacao(Long caixaId, Long contaId,
+      char tipoTransacao, Double valor,
+      Double latitude,
+      Double longitude) {
     this.caixaId = caixaId;
     this.contaId = contaId;
     this.dataHora = LocalDateTime.now();
     this.tipoTransacao = tipoTransacao;
     this.valor = valor;
+    this.latitude = latitude;
+    this.longitude = longitude;
   }
 
   public Long getId() {
@@ -74,6 +81,22 @@ public class Transacao {
 
   public void setValor(Double valor) {
     this.valor = valor;
+  }
+
+  public Double getLatitude() {
+    return latitude;
+  }
+
+  public void setLatitude(Double latitude) {
+    this.latitude = latitude;
+  }
+
+  public Double getLongitude() {
+    return longitude;
+  }
+
+  public void setLongitude(Double longitude) {
+    this.longitude = longitude;
   }
 
 }

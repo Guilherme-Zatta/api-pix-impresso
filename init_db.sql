@@ -52,3 +52,11 @@ ALTER TABLE transacoes
 ADD CONSTRAINT transacoes_caixa 
 FOREIGN KEY (CAIXA_ID) 
 REFERENCES caixas (ID);
+
+
+ALTER TABLE public.transacoes 
+ADD latitude float8 NULL;
+
+
+ALTER TABLE public.transacoes 
+ADD longitude float8 NULL;

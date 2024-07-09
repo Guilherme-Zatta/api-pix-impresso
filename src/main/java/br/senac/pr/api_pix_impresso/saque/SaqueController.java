@@ -52,7 +52,9 @@ public class SaqueController {
     var transacaoDto = new CreateTransacaoDto(dto.caixaId(),
         conta.getId(),
         "D",
-        dto.valor());
+        dto.valor(),
+        0.0,
+        0.0);
 
     var transacao = transacaoService.save(transacaoDto);
 

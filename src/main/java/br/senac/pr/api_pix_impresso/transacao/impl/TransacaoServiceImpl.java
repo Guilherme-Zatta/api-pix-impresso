@@ -22,10 +22,16 @@ public class TransacaoServiceImpl implements TransacaoService {
   @Override
   @Transactional
   public Transacao save(CreateTransacaoDto dto) {
-    Transacao transacao = new Transacao(dto.getCaixaId(),
-        dto.getContaId(),
-        dto.getTipoTransacao().charAt(0),
-        dto.getValor());
+    if (dto.latitude() == null || dto.longitude() == null) {
+      throw new RuntimeException("Latitude e longitude devem ser informadas");
+    }
+
+    Transacao transacao = new Transacao(dto.caixaId(),
+        dto.contaId(),
+        dto.tipoTransacao().charAt(0),
+        dto.valor(),
+        dto.latitude(),
+        dto.longitude());
 
     return transacaoRepository.save(transacao);
   }

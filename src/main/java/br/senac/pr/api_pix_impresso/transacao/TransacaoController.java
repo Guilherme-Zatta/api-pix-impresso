@@ -33,9 +33,14 @@ public class TransacaoController {
   }
 
   @PostMapping
-  public ResponseEntity<Transacao> save(@RequestBody CreateTransacaoDto dto) {
-    var transacao = transacaoService.save(dto);
-    return ResponseEntity.ok().body(transacao);
+  public ResponseEntity<Object> save(@RequestBody CreateTransacaoDto dto) {
+    try {
+      var transacao = transacaoService.save(dto);
+      return ResponseEntity.ok().body(transacao);
+    } catch (Exception e) {
+      return ResponseEntity.internalServerError().body(e.getMessage());
+    }
+
   }
 
   @PatchMapping("/{id}/updateValor")

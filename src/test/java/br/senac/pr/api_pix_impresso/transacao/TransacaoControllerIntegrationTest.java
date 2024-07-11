@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,9 +27,11 @@ public class TransacaoControllerIntegrationTest {
 
   // deve criar uma transação com latitude e longitude
   @Test
+  @Order(1)
   public void shouldCreateTransacaoWithLatitudeAndLogitude() {
     // given - dado o objeto de criação da transação
-    var transacao = new CreateTransacaoDto(Long.valueOf(1),
+    CreateTransacaoDto transacao = new CreateTransacaoDto(
+        Long.valueOf(1),
         Long.valueOf(1),
         "D",
         1000.00,
@@ -36,11 +39,11 @@ public class TransacaoControllerIntegrationTest {
         -56.2341);
 
     // when - quando for chamada a rota de criação da transação
-    Transacao transacaoCreated = this.testRestTemplate
+    ResponseEntity<Transacao> response = this.testRestTemplate
         .postForEntity("http://localhost:" + port + "/transacoes",
             transacao,
-            Transacao.class)
-        .getBody();
+            Transacao.class);
+    var transacaoCreated = response.getBody();
 
     // then - então deve validar os resultados
     // EXPECTATIVAS (EXPECTATIONS)
@@ -55,6 +58,7 @@ public class TransacaoControllerIntegrationTest {
 
   // não deve criar uma transação sem latitude e longitude
   @Test
+  @Order(2)
   public void shouldNotCreateTransacaoWithoutLatitudeAndLogitude() {
     var transacao = new CreateTransacaoDto(Long.valueOf(1),
         Long.valueOf(1),
@@ -63,14 +67,14 @@ public class TransacaoControllerIntegrationTest {
         null,
         null);
 
-    ResponseEntity<Transacao> response = this.testRestTemplate
+    ResponseEntity<String> response = this.testRestTemplate
         .postForEntity("http://localhost:" + port + "/transacoes",
             transacao,
-            Transacao.class);
+            String.class);
     var transacaoCreated = response.getBody();
     // expectativas (expectations)
-    assertNotEquals(transacaoCreated, null);
-    assertEquals(response.getStatusCode().value(), 500);
+    assertEquals(transacaoCreated, "Latitude e longitude devem ser informadas");
+    assertEquals(500, response.getStatusCode().value());
   }
 
 }

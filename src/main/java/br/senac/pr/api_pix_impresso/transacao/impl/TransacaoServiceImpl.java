@@ -1,5 +1,6 @@
 package br.senac.pr.api_pix_impresso.transacao.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -22,7 +23,8 @@ public class TransacaoServiceImpl implements TransacaoService {
   @Override
   @Transactional
   public Transacao save(CreateTransacaoDto dto) {
-    if (dto.latitude() == null || dto.longitude() == null) {
+    if (dto.latitude() == null ||
+        dto.longitude() == null) {
       throw new RuntimeException("Latitude e longitude devem ser informadas");
     }
 
@@ -30,6 +32,7 @@ public class TransacaoServiceImpl implements TransacaoService {
         dto.contaId(),
         dto.tipoTransacao().charAt(0),
         dto.valor(),
+        LocalDateTime.now(),
         dto.latitude(),
         dto.longitude());
 

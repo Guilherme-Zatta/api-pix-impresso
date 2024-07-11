@@ -3,20 +3,15 @@ package br.senac.pr.api_pix_impresso.shared.models;
 import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Table(name = "transacoes")
 public class Transacao {
   @Id
   private Long id;
-  @Column("caixa_id")
   private Long caixaId;
-  @Column("conta_id")
   private Long contaId;
-  @Column("data_hora")
   private LocalDateTime dataHora;
-  @Column("tipo_transacao")
   private char tipoTransacao;
   private Double valor;
   private Double latitude;
@@ -24,11 +19,12 @@ public class Transacao {
 
   public Transacao(Long caixaId, Long contaId,
       char tipoTransacao, Double valor,
+      LocalDateTime dataHora,
       Double latitude,
       Double longitude) {
     this.caixaId = caixaId;
     this.contaId = contaId;
-    this.dataHora = LocalDateTime.now();
+    this.dataHora = dataHora;
     this.tipoTransacao = tipoTransacao;
     this.valor = valor;
     this.latitude = latitude;
